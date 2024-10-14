@@ -20,7 +20,7 @@ export async function getBoards(sortBy = 'default', selectedTag = "") {
 
     // Fetchar /boards 
     try {
-        const response = await apiFetch('http://localhost:3000/boards', 'GET', null);
+        const response = await apiFetch('/boards', 'GET', null);
         const boards = response.boards;
         const loggedInUser = response.loggedInUser;
 
@@ -114,7 +114,7 @@ async function removeBoard(boardId) {
 
     if (confirmed) {
         try {
-            const response = await apiFetch(`http://localhost:3000/boards/${boardId}`, 'DELETE', null)
+            const response = await apiFetch(`/boards/${boardId}`, 'DELETE', null)
 
             if (response.success) {
                 if (boardId == globalBoardId) { // Om vi raderar den board som vi är på
@@ -156,7 +156,7 @@ export async function createNewBoard(showingDashboard) {
     }
 
     try { // Skapar en board med angedda parametrar
-        const response = await apiFetch(`http://localhost:3000/create-board`, 'POST', { dashName, dashTag, isPrivate, password: isPrivate ? password : null })
+        const response = await apiFetch(`/create-board`, 'POST', { dashName, dashTag, isPrivate, password: isPrivate ? password : null })
 
         if (isPrivate) { // Om boarden är privat, spara en boardToken för access
             const boardToken = response.boardToken;

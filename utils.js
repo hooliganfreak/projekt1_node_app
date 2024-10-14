@@ -361,7 +361,7 @@ export async function verifyBoardPassword(boardId) {
             }
 
             try { // Frågar servern om lösenordet är rätt
-                const passwordResponse = await apiFetch(`http://localhost:3000/verify-board-password`, 'POST', { boardId, password });
+                const passwordResponse = await apiFetch(`/verify-board-password`, 'POST', { boardId, password });
                 if (!passwordResponse.success) {
                     document.getElementById('popup-error-message').textContent = "Incorrect password.";
                     showError(document.getElementById('popup-error-message'));

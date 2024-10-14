@@ -12,7 +12,7 @@ let globalBoardId = null;
 export async function addStickyNote(noteName, noteColor, boardId) {
     globalBoardId = getGlobalId();
     try {
-        const data = await apiFetch('http://localhost:3000/create-sticky-note', 'POST', { noteName, noteColor, boardId });
+        const data = await apiFetch('/create-sticky-note', 'POST', { noteName, noteColor, boardId });
 
         if (!isWebSocketFail()) {
             const wsData = {
@@ -132,7 +132,7 @@ export async function getStickyNotes(boardId) {
     // Tömmer container före vi refreshar notes
     stickyNotesContainer.innerHTML = '';
     try { // Fetchar notes som hör till denna boardId
-        const notes = await apiFetch(`http://localhost:3000/notes/${boardId}`, 'GET', null);
+        const notes = await apiFetch(`/notes/${boardId}`, 'GET', null);
 
         if (notes.length === 0) {
             errorHandler('noStickyNotes');
@@ -157,7 +157,7 @@ export async function getStickyNotes(boardId) {
 // Funktion för att uppdatera sticky-note position i db
 export async function updateStickyNotePosition(noteId, newPositionX, newPositionY) {
     try {
-        await apiFetch(`http://localhost:3000/notes_position/${noteId}`, 'PATCH', { newPositionX, newPositionY });
+        await apiFetch(`/notes_position/${noteId}`, 'PATCH', { newPositionX, newPositionY });
     } catch {
         console.error("Failed to update sticky-note position.");
         errorHandler('failedToUpdateNote');
@@ -168,7 +168,7 @@ export async function updateStickyNotePosition(noteId, newPositionX, newPosition
 async function updateStickyNoteContent(noteId, newName, newText) {
     globalBoardId = getGlobalId();
     try {
-        await apiFetch(`http://localhost:3000/notes_content/${noteId}`, 'PATCH', { newText, newName });
+        await apiFetch(`/notes_content/${noteId}`, 'PATCH', { newText, newName });
 
         await getStickyNotes(globalBoardId); // Om det fungerade, refresha sticky-notes
     } catch (error) {
@@ -184,7 +184,7 @@ export async function deleteStickyNote(noteId) {
     if (confirmed) { // Om man klickar på "Confirm"
         globalBoardId = getGlobalId();
         try {
-            const response = await apiFetch(`http://localhost:3000/notes_delete/${noteId}`, 'DELETE', null);
+            const response = await apiFetch(`/notes_delete/${noteId}`, 'DELETE', null);
 
             if (response.success) { 
                 const boardId = globalBoardId; 
@@ -205,7 +205,7 @@ export async function deleteStickyNote(noteId) {
 // Funktion för att uppdatera sticky note dimensioner
 export async function updateStickyNoteDimensions(noteId, newWidth, newHeight) {
     try {
-        await apiFetch(`http://localhost:3000/notes_dimensions/${noteId}`, 'PATCH', { newWidth, newHeight });
+        await apiFetch(`/notes_dimensions/${noteId}`, 'PATCH', { newWidth, newHeight });
 
     } catch {
         console.error("Failed to update sticky-note dimensions.");

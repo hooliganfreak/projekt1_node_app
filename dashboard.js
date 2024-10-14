@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => { // Kör denna kod n�
 // Funktion som checkar om token är valid
 async function isTokenValid(token) {
     try {
-        const response = await apiFetch('http://localhost:3000/validate-token', 'POST', null, token);
+        const response = await apiFetch('/validate-token', 'POST', null, token);
         return response.valid;
     } catch (error) {
         console.error('Token validation failed:', error);
@@ -158,7 +158,7 @@ export async function loadDashboard(board, loggedInUser) {
             }
         }
 
-        await apiFetch(`http://localhost:3000/get-board-details`, 'POST', { boardId, isPrivate, isBoardCreator }, boardToken);
+        await apiFetch(`/get-board-details`, 'POST', { boardId, isPrivate, isBoardCreator }, boardToken);
 
         // Ändra designen
         dashboard.classList.add('move-left');
@@ -330,8 +330,8 @@ function scheduleTokenRefresh(accessToken, isBoardToken = false, boardId = null)
         let refreshToken = localStorage.getItem(isBoardToken ? `board_${boardId}_refresh_access` : 'refreshToken');
 
         const apiUrl = isBoardToken
-            ? 'http://localhost:3000/refresh-board-token'
-            : 'http://localhost:3000/refresh-token';
+            ? '/refresh-board-token'
+            : '/refresh-token';
 
         const body = isBoardToken ? { boardId } : null;
 
