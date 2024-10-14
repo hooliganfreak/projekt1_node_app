@@ -370,7 +370,6 @@ export function errorHandler(context = '', errorElement = null) {
             showError(dashboardErrorMsg);
             break;
         case 'unauthorizedDeletion':
-            document.getElementById('custom-popup').remove();
             dashboardErrorMsg.textContent = "Only the creator can delete this board!";
             showError(dashboardErrorMsg);
             break;
