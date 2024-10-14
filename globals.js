@@ -1,0 +1,19 @@
+// Global variables
+export const dashboard = document.getElementById('dash-user-container');
+export const createNewDash = document.getElementById('create-new-dashboard');
+export const sortBtn = document.getElementById('sort-btn');
+export const sortTags = document.getElementById('sort-tags');
+export const noDashboardMessage = document.getElementById('no-dashboard-messages');
+export const dashboardList = document.getElementById('dashboard-list');
+export const newNoteBtn = document.getElementById("create-new-sticky");
+export const confirmationBox = document.getElementById('confirmation');
+export const userContainer = document.getElementById('user-container');
+export const globalUserContainer = document.getElementById('global-container');
+export const boardUserContainer = document.getElementById('board-container');
+export const privateCheckbox = document.getElementById('private-board');
+export const passwordContainer = document.getElementById('password-container');
+export const stickyNotesContainer = document.getElementById('sticky-container');
+export const errorMessage = document.getElementById('error-message');
+export const dashboardErrorMsg = document.getElementById('dashboard-error-message');
+export const noteErrorMsg = document.getElementById('note-error-message');
+export const successMessage = document.getElementById('success-message');

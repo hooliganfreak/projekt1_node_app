@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #6FAAFF, #955DFF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    width: 16%;
+    text-align: center;
+}
+
+.input-container {
+    position: relative;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 20px;  
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+    color: #333;  
+    margin-bottom: 1%;
+}
+
+input[type="text"]::placeholder, input[type="password"]::placeholder {
+    color: #aaa;  /* Gray color for the placeholder */
+}
+
+.username-valid-icon, .password-valid-icon, .username-invalid-icon, .password-invalid-icon {
+    position: absolute; /* Position absolutely within the container */
+    right: 10px; /* Align to the right */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust vertical alignment */
+    font-size: 1.2em; /* Adjust size */
+    display: none; /* Hidden by default */
+}
+
+button{
+    margin-top: 15px;
+    width: 30%;
+    background-color: #ffffff;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: #dddddd; 
+}
+
+#show-register, #show-login {
+    font-size: small;
+    text-decoration: none;
+    font-style: italic;
+}
+
+#register-message, #login-message {
+    font-size: small;
+    text-decoration: none;
+}

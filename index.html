@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> <!-- CSS fil -->
+    <script src="script.js" defer></script> <!-- JS fil -->
+    <title>Hooliganfreaks Whiteboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div id="login-section">
+            <h1>Sign in</h1>
+            <form id="login-form">
+                <label for="login-username"></label>
+                <div class="input-container">
+                    <input type="text" id="login-username" placeholder="Username" required>
+                    <label for="login-password"></label>
+                    <input type="password" id="login-password" placeholder="Password" required>
+                </div>
+                <button type="submit">Login</button>
+                <div id="login-message" style="display: none;"></div>
+            </form>
+            <a href="#" id="show-register">Sign up</a></p>
+        </div>
+
+        <!-- Registration Form -->
+        <div id="register-section" style="display: none;">
+            <h1>Register</h1>
+            <form id="register-form">
+                <label for="register-username"></label>
+                <div class="input-container">
+                    <input type="text" id="register-username" placeholder="Username" required>
+                    <span class="username-valid-icon">✔️</span> 
+                    <span class="username-invalid-icon">❌</span> 
+                </div>
+
+                <label for="register-password"></label>
+                <div class="input-container">
+                    <input type="password" id="register-password" placeholder="Password" required>
+                    <span class="password-valid-icon">✔️</span> 
+                    <span class="password-invalid-icon">❌</span> 
+                </div>
+
+                <button type="submit">Register</button>
+                <div id="register-message" style="display: none;"></div>
+            </form>
+            <a href="#" id="show-login">Login</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

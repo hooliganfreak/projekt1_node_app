@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script type="module" src="dashboard.js" defer></script>
+    <link rel="stylesheet" href="style_dashboard.css">
+</head>
+
+<body>
+    <h1 id="welcome-message"></h1>
+    <!-- Main dashboard -->
+    <div id="dash-user-container">
+        <div id="dashboard">
+            <h1>Your Dashboards</h1>
+            <ul id="dashboard-list">
+                <!-- Denna lista blir dynamiskt ifylld via dashboard.js -->
+            </ul>
+            <p id="no-dashboard-messages" style="display: none;"></p>
+            <p id="dashboard-error-message" style="display: none; color: red;"></p>
+            <div class="button-container">
+                <button id="sort-btn" style="display: none;">Sort list</button>
+                <button id="create-new-btn">Create New</button>
+            </div>
+        </div>
+        <div id="user-container" style="display: none;">
+            <div id="global-container">
+                <h1>Global Connected Users</h1>
+                <ul id="global-user-list">
+                    <!-- Denna lista blir dynamiskt ifylld via dashboard.js -->
+                </ul>
+            </div>
+            <div id="board-container" style="display: none;">
+                <h1>Board Connected Users</h1>
+                <ul id="board-user-list">
+                    <!-- Denna lista blir dynamiskt ifylld via dashboard.js -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="sticky-container" style="display: none;">
+        <!-- Denna lista blir dynamiskt ifylld via dashboard.js -->
+    </div>
+
+    <!-- Delete confirmation -->
+    <div id="confirmation" class="confirm-popup" style="display: none;">
+        <div class="confirm-popup-content">
+            <p id="confirm-popup-text"></p>
+            <button id="confirmDelete">Yes, delete</button>
+            <button id="cancelDelete">Cancel</button>
+        </div>
+    </div>
+
+    <button id="logout-btn">Logout</button>
+    <button id="create-new-sticky" style="display: none;">New note</button>
+
+    <div id="create-new-dashboard" style="display: none;">
+        <h1>Create a new dashboard</h1>
+        <input type="text" id="dash-name" placeholder="Dashboard name (mandatory)" required>
+        <input type="text" id="dash-tag" placeholder="Dashboard tag (optional)">
+
+        <div>
+            <label for="private-board">Private board?</label>
+            <input type="checkbox" id="private-board" />
+        </div>
+
+        <div id="password-container" style="display: none;">
+            <input type="password" id="board-password" placeholder="Enter password" />
+        </div>
+
+        <div id="error-message" style="display: none; color: red;"></div>
+        <div id="success-message" style="display: none; color: green;"></div>
+
+        <button id="back-btn">Back</button>
+        <button id="create-new-btn-final">Create New</button>
+    </div>
+
+    <!-- Sort popup -->
+    <div id="sort-popup" class="popup">
+        <div class="sort-popup-content">
+            <h2>Sort Options</h2>
+            <label id="alphabetical">
+                <input id="sort-option" type="radio" name="sortOption" value="alphabetical" checked>
+                Alphabetical
+            </label>
+            <br>
+            <label id="tag">
+                <input id="sort-option" type="radio" name="sortOption" value="tag">
+                By Tag
+            </label>
+            <br>
+            <select id="sort-tags" style="display: none;">
+                <option></option>
+                <!-- Tag alternativen blir dynamiskt ifyllda via dashboard.js -->
+            </select>
+            <br>
+            <button id="apply-sort-btn">Apply Sort</button>
+            <button id="close-popup-btn">Cancel</button>
+        </div>
+    </div>
+
+    <!-- New note popup -->
+    <div id="note-popup" class="popup">
+        <div class="note-popup-content">
+            <h1>Create a new note</h1>
+            <input type="text" id="note-name" placeholder="Note name (mandatory)" required>
+            <br>
+            <input type="color" id="note-color" name="note-color" value="#f0f0f0">
+            <label for="note-color">Select a color</label>
+            <br>
+            <div id="note-error-message" style="display: none; color: red;"></div>
+            <div id="note-success-message" style="display: none; color: green;"></div>
+            <button id="cancel-btn">Cancel</button>
+            <button id="create-new-note-btn">Create</button>
+        </div>
+    </div>
+</body>
+
+</html>

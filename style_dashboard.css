@@ -1,0 +1,482 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #6FAAFF, #955DFF);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#dash-user-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;  /* Stack items vertically */
+    align-items: center;     /* Center elements horizontally */
+    width: 20%;             /* Occupy full width */
+}
+
+.board-creator {
+    font-size: smaller;
+    font-style: italic;
+    color: grey;
+}
+
+#user-container {
+    width: 100%;
+    border: 1px solid black;
+    margin-top: 5px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    max-height: 195px;
+    overflow: hidden;
+}
+
+#board-user-list, #global-user-list {
+    padding: 0;
+    margin: 0;
+    max-height: 100px; /* Set a max height for the list */
+    overflow-y: auto;
+}
+
+#user-container h1 {
+    font-size: medium;
+    border-bottom: 1px solid;
+}
+
+#user-container li { 
+    list-style-type: none;
+}
+
+#sticky-container {
+    width: 72vw;
+    height: 99%;
+    position: relative; /* Enables relative positioning */
+    right: 50px;
+}
+
+.sticky-note {
+    display: flex; /* Use flexbox layout */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Distribute space evenly */
+    border: 1px solid #ccc; /* Light border for definition */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Subtle shadow for depth */
+    padding: 10px; /* Padding inside the note */
+    min-width: 250px; /* Base minimum width */
+    min-height: fit-content; /* Base minimum height */
+    position: absolute; /* Allow positioning on the screen */
+}
+
+.sticky-note-header {
+    display: flex; /* Use flexbox for header layout */
+    align-items: stretch;
+    border-bottom: 1px solid grey;
+    width: 100%;
+}
+
+.sticky-note-spacer {
+    cursor: move;
+    flex-grow: 1;
+    min-width: 35%;
+}
+
+.sticky-note h1 {
+    font-size: 18px; /* Title font size */
+    margin: 0; /* Remove default margin */
+    max-width: 60%;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+.sticky-note-content {
+    flex-grow: 1;
+    margin-top: 5px; /* Remove default margin */
+    margin-bottom: 5px;
+    font-size: 15px;
+}
+
+.sticky-note-header span {
+    font-size: 20px; /* Size for the delete button */
+    cursor: pointer; /* Pointer cursor for clickable */
+    font-weight: bold;
+    color: red;
+}
+
+.sticky-note-footer {
+    border-top: 1px solid grey;
+    font-style: italic;
+    padding-top: 5px;
+}
+
+.sticky-note-footer p {
+    margin: 0;
+    font-size: 13px;
+}
+
+/* ChatGPT hjälp */
+.resizer {
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-bottom: 12px solid rgba(0, 0, 0, 0.2); 
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: nwse-resize;
+}
+
+#dashboard {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 600px;
+    min-height: 250px;
+    max-height: 500px;
+    text-align: center;
+    overflow: hidden;
+}
+
+#dashboard-list {
+    margin-bottom: 5px; 
+    padding: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 150px;
+}
+
+#dashboard-list li {
+    max-width: 100%;
+    border: 1px solid #ccc; 
+    padding: 10px; 
+    margin: 5px 0; 
+    border-radius: 5px; 
+    list-style-type: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#dashboard-list li p {
+    white-space: normal; /* Allow wrapping */
+    overflow-wrap: break-word; /* Ensure long words wrap properly */
+    max-width: 90%; /* Make sure it doesn't exceed the <li> width */
+}
+
+#dash-user-container.move-left {
+    height: fit-content;
+    right: 3%;
+}
+
+#dashboard-list li.selected {
+    border: 2px solid green;
+}
+
+#create-new-dashboard {
+    position: relative;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    width: 20%;
+    max-width: 600px;
+    min-height: 250px;
+    text-align: center;
+}
+
+#logout-btn {
+    position: absolute;
+    top: 20px; 
+    right: 20px; 
+    padding: 10px 20px; 
+    background-color: #f44336; 
+    color: white;
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+    font-size: 16px; 
+}
+
+#logout-btn:hover, .confirm-button:hover {
+    background-color: #d32f2f; 
+}
+
+#create-new-sticky {
+    position: absolute;
+    top: 20%; 
+    right: 10px; 
+    padding: 10px 20px; 
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+    font-size: 16px; 
+}
+
+#create-new-sticky:hover {
+    background-color: #0056b3; 
+}
+
+#welcome-message {
+    position: absolute; 
+    top: 20px; 
+    left: 20px; 
+    color: #333; 
+    font-size: 35px; 
+}
+
+#dashboard-error-message {
+    font-size: small;
+    margin-bottom: 5px;
+}
+
+#note-error-message, #password-error-message {
+    font-size: small;
+    margin-top: 5px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#create-new-btn, #sort-btn,
+#create-new-btn-final, #back-btn {
+    padding: 10px; 
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    width: 30%; 
+}
+
+#create-new-btn:hover, #sort-btn:hover,
+#create-new-btn-final:hover, #back-btn:hover {
+    background-color: #0056b3; 
+}
+
+#create-new-btn-final {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+#back-btn {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+}
+
+#sort-btn {
+    margin-right: auto;
+}
+
+#create-new-btn {
+    margin-left: auto;
+}
+
+#no-dashboard-messages {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+input[type="text"], input[type="password"], #board-password {
+    width: 80%;
+    padding: 8px;
+    border-radius: 20px;  /* Makes the input field rounded */
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+    color: #333;  /* Regular text color */
+    margin-bottom: 1%;
+    margin-top: 1%;
+}
+
+.info-div {
+    display: flex; /* Use flexbox to align children */
+    align-items: center; /* Center items vertically */
+}
+
+.lock-icon {
+    width: 30px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+#board-password {
+    font-size: 12px;
+}
+
+#error-message, #success-message, .error-message {
+    color: red;;
+    margin-top: 10px;
+    font-size: small;
+    text-decoration: none;
+}
+
+.board-cross {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ccc; 
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.board-remove {
+    cursor: pointer;
+    color: red; 
+    font-weight: bold;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.popup-content, .note-popup-content, .sort-popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+.popup-content h2, .note-popup-content h2, .sort-popup-content h2 {
+    margin-bottom: 20px;
+}
+
+.confirm-button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.cancel-button, .note-popup-content button, .sort-popup-content button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.cancel-button:hover, .note-popup-content button:hover, .sort-popup-content button:hover {
+    background-color: #0056b3;
+}
+
+#note-color {
+    margin-top: 5px;
+}
+
+#sort-tags {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.confirm-popup {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+}
+
+/* Modal content box */
+.confirm-popup-content {
+    font-size: 14px;
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+/* Buttons inside the modal */
+.confirm-popup-content button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#confirmDelete {
+    background-color: red;
+    color: white;
+}
+
+#cancelDelete {
+    background-color: #ccc;
+}
+
+.sticky-container-error-msg {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 30%;
+}
+
+.expiry-message {
+    text-align: center;
+    color: red;
+    font-size: 46px;
+}
+
+.expiry-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.expiry-button:hover {
+    background-color: #d1d1d1;
+}
