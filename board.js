@@ -123,7 +123,6 @@ async function removeBoard(boardId) {
                     dashboard.classList.remove('move-left');
                 }
 
-                document.getElementById('custom-popup').remove(); // Raderar popup
                 await getBoards(); // Fetchar den nya listan med boards pånytt
                 hideMsg(confirmationBox);
                 if (!isWebSocketFail()) sendWebSocketMessage(boardId, 'deleteBoard'); // Skickar websocket meddelande endast om websocket fungerar
