@@ -32,7 +32,7 @@ document.getElementById('register-form').addEventListener('submit', async (event
 
     // Skickar innehållet till /register
     try {
-        const result = await sendRequest('http://localhost:3000/register', { username, password });
+        const result = await sendRequest('/register', { username, password });
 
         if (result.message) {
             displayMsg(registerMsg, result.message, false);
@@ -55,7 +55,7 @@ document.getElementById('login-form').addEventListener('submit', async (event) =
 
     // Skickar innehållet till /login
     try {
-        const result = await sendRequest('http://localhost:3000/login', { username, password });
+        const result = await sendRequest('/login', { username, password });
         localStorage.setItem('jwtToken', result.token);
         localStorage.setItem('refreshToken', result.refreshToken);
         localStorage.setItem('username', result.username);
