@@ -348,7 +348,7 @@ export async function verifyBoardPassword(boardId) {
         `;
 
         // Skapar en popup
-        createPopup(passwordPopupContent, async (popup) => {
+        createPopup(passwordPopupContent, async () => {
             const passwordElement = document.getElementById('dashboard-password-input');
             const password = passwordElement.value;
 
@@ -369,7 +369,8 @@ export async function verifyBoardPassword(boardId) {
                 // Sparar board tokens i localStorage
                 localStorage.setItem(`board_${boardId}_access`, passwordResponse.boardToken);
                 localStorage.setItem(`board_${boardId}_refresh_access`, passwordResponse.boardRefreshToken);
-                popup.remove();
+                
+                document.getElementById('custom-popup').remove(); // Raderar popup
                 resolve(true);
             } catch (error) {
                 console.error(error);
