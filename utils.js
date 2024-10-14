@@ -371,7 +371,6 @@ export async function verifyBoardPassword(boardId) {
                 // Sparar board tokens i localStorage
                 localStorage.setItem(`board_${boardId}_access`, passwordResponse.boardToken);
                 localStorage.setItem(`board_${boardId}_refresh_access`, passwordResponse.boardRefreshToken);
-                document.getElementById('custom-popup').remove();
                 resolve(true);
             } catch (error) {
                 console.error(error);
