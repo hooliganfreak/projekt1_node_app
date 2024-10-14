@@ -6,7 +6,10 @@ import { getStickyNotes } from './note.js';
 let socket;
 export async function initializeWebSocket(token, username) {
     return new Promise((resolve, reject) => {
-        socket = new WebSocket(`ws://localhost:3001/?access_token=${token}&user=${username}`);
+        const port = process.env.PORT || 3001;
+        const webSocketUrl =  `wss://${window.location.hostname}:${port}/?access_token=${token}&user=${username}`;
+
+        socket = new WebSocket(webSocketUrl);
 
         socket.onopen = () => {
             console.log(`WebSocket connection established by user ${username}`);
