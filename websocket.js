@@ -6,7 +6,7 @@ import { getStickyNotes } from './note.js';
 let socket;
 export async function initializeWebSocket(token, username) {
     return new Promise((resolve, reject) => {
-        const webSocketUrl =  `wss://projekt-v1-g2exhfaxgpfaa6ht.northeurope-01.azurewebsites.net/?access_token=${token}&user=${username}`;
+        const webSocketUrl =  `ws://projekt-v1-g2exhfaxgpfaa6ht.northeurope-01.azurewebsites.net/?access_token=${token}&user=${username}`;
 
         socket = new WebSocket(webSocketUrl);
 
