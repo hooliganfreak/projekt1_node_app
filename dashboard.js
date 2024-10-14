@@ -370,10 +370,13 @@ export function errorHandler(context = '', errorElement = null) {
             showError(dashboardErrorMsg);
             break;
         case 'unauthorizedDeletion':
+            document.getElementById('custom-popup').remove();
             dashboardErrorMsg.textContent = "Only the creator can delete this board!";
             showError(dashboardErrorMsg);
             break;
         case 'apiFetchFail':
+            dashboardErrorMsg.textContent = 'Something went wrong fetching the data.';
+            showError(dashboardErrorMsg);
             console.error('Something went wrong fetching the data.')
             break;
         case 'loadDashboardFailed':

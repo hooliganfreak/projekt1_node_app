@@ -200,7 +200,6 @@ export function createPopup(content, confirm) {
 
     const confirmButton = createButton('Confirm', 'confirm-button', () => {
         confirm();
-        popup.remove();
     });
 
     popupContent.appendChild(confirmButton);
@@ -349,7 +348,7 @@ export async function verifyBoardPassword(boardId) {
         `;
 
         // Skapar en popup
-        createPopup(passwordPopupContent, async () => {
+        createPopup(passwordPopupContent, async (popup) => {
             const passwordElement = document.getElementById('dashboard-password-input');
             const password = passwordElement.value;
 
@@ -370,6 +369,7 @@ export async function verifyBoardPassword(boardId) {
                 // Sparar board tokens i localStorage
                 localStorage.setItem(`board_${boardId}_access`, passwordResponse.boardToken);
                 localStorage.setItem(`board_${boardId}_refresh_access`, passwordResponse.boardRefreshToken);
+                popup.remove();
                 resolve(true);
             } catch (error) {
                 console.error(error);
