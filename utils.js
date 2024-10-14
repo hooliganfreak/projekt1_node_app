@@ -54,7 +54,6 @@ export function createBoardListItem(board, onRemove, onClick, loggedInUser) {
     listItem.addEventListener('click', (event) => { // Lägger till click funktion till hela <li> elementet
         event.stopPropagation();
         onClick(board.id);
-        selectListItem(board.id);
     });
 
     return listItem;
