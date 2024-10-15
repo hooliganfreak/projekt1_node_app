@@ -2,6 +2,7 @@ import { displayUsers } from './dashboard.js';
 import { getBoards } from './board.js';
 import { getStickyNotes } from './note.js';
 import { dashboard, stickyNotesContainer, globalUserContainer, boardUserContainer } from './globals.js';
+import { hideMsg, showMsg } from './utils.js';
 
 // Funktion som initialiserar WebSocket connection
 let socket;
