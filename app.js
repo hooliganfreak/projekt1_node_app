@@ -255,6 +255,7 @@ app.post('/create-board', authenticateJWT, async (req, res) => {
                 name: dashName,
                 tag: dashTag,
                 isPrivate,
+                stickyNotes: [],         
                 password: hashedPassword,
                 userId: req.user.userId
             }
@@ -280,7 +281,6 @@ app.post('/create-board', authenticateJWT, async (req, res) => {
         res.status(201).json({ 
             message: 'Dashboard created successfully', 
             board: newBoard,
-            stickyNotes: [],
             boardToken: isPrivate ? boardToken : null,
             boardRefreshToken: isPrivate ? boardRefreshToken : null
          });
