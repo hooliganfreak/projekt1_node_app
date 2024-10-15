@@ -188,6 +188,7 @@ export async function deleteStickyNote(noteId) {
 
             if (response.success) { 
                 const boardId = globalBoardId; 
+                document.getElementById('custom-popup').remove();
                 if (!isWebSocketFail()) sendWebSocketMessage(noteId, 'deleteNote', { boardId });
 
                 await getStickyNotes(boardId); 

@@ -10,6 +10,7 @@ import {
 
 let selectedListItemId = null;
 let sortBy;
+let loggedInUser;
 // Main getBoards funktion som hämtar alla boards 
 export async function getBoards(sortBy = 'default', selectedTag = "") {
     // Tömmer innehållet så att varje gång getBoards körs så uppdateras listan
@@ -22,7 +23,7 @@ export async function getBoards(sortBy = 'default', selectedTag = "") {
     try {
         const response = await apiFetch('/boards', 'GET', null);
         const boards = response.boards;
-        const loggedInUser = response.loggedInUser;
+        loggedInUser = response.loggedInUser;
 
         hideMsg(noDashboardMessage, dashboardErrorMsg, newNoteBtn); // Gömmer errormeddelanden
         selectBoards(boards, sortBy, selectedTag, loggedInUser); // Kör selectBoards
@@ -166,12 +167,11 @@ export async function createNewBoard(showingDashboard) {
         }
 
         if (showingDashboard) { // Om vi redan har klickat på en board
-            selectedListItemId = response.board.id;
             hideMsg(createNewDash);
             showMsg(stickyNotesContainer);
             dashboard.style.display = 'flex';
             dashboard.classList.add('move-left');
-            await loadDashboard(selectedListItemId);
+            await loadDashboard(response.board, loggedInUser);
         } else {
             hideMsg(createNewDash);
             dashboard.style.display = 'flex';
