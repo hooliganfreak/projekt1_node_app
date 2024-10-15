@@ -255,7 +255,6 @@ app.post('/create-board', authenticateJWT, async (req, res) => {
                 name: dashName,
                 tag: dashTag,
                 isPrivate,
-                stickyNotes: [],         
                 password: hashedPassword,
                 userId: req.user.userId
             }
@@ -278,9 +277,16 @@ app.post('/create-board', authenticateJWT, async (req, res) => {
             );
         }
 
+        const boardDetails = await prisma.board.findFirst({
+            where: { id: newBoard.id },
+            include: {
+                stickyNotes: true, 
+            }
+        });
+
         res.status(201).json({ 
             message: 'Dashboard created successfully', 
-            board: newBoard,
+            board: boardDetails,
             boardToken: isPrivate ? boardToken : null,
             boardRefreshToken: isPrivate ? boardRefreshToken : null
          });

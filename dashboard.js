@@ -376,7 +376,8 @@ export function errorHandler(context = '', errorElement = null) {
             break;
         case 'apiFetchFail':
             dashboardErrorMsg.textContent = 'Something went wrong fetching the data.';
-            showError(dashboardErrorMsg);
+            errorMessage.textContent = 'Something went wrong fetching the data.';
+            showError(dashboardErrorMsg, errorMessage);
             console.error('Something went wrong fetching the data.')
             break;
         case 'loadDashboardFailed':
