@@ -5,7 +5,8 @@ import { verifyDelete, hideMsg, createBoardListItem, createElement, showMsg, sel
 import {
     dashboardList, sortTags, sortBtn, confirmationBox, noDashboardMessage,
     dashboardErrorMsg, newNoteBtn, createNewDash, privateCheckbox, errorMessage,
-    dashboard, stickyNotesContainer
+    dashboard, stickyNotesContainer,
+    boardUserContainer, globalUserContainer
 } from './globals.js';
 
 let selectedListItemId = null;
@@ -120,7 +121,8 @@ async function removeBoard(boardId) {
             if (response.success) {
                 if (boardId == globalBoardId) { // Om vi raderar den board som vi är på
                     selectedListItemId = null;
-                    hideMsg(stickyNotesContainer);
+                    hideMsg(stickyNotesContainer, boardUserContainer);
+                    showMsg(globalUserContainer);
                     dashboard.classList.remove('move-left');
                 }
 
