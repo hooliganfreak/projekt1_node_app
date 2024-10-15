@@ -158,7 +158,9 @@ export async function loadDashboard(board, loggedInUser) {
             }
         }
 
-        await apiFetch(`/get-board-details`, 'POST', { boardId, isPrivate, isBoardCreator }, boardToken);
+        const token = localStorage.getItem('jwtToken');
+        const tokenToUse = isPrivate && !isBoardCreator ? boardToken : token; // Använder bordToken om boarden är privat och vi inte är skaparen
+        await apiFetch(`/get-board-details`, 'POST', { boardId, isPrivate, isBoardCreator }, tokenToUse);
 
         // Ändra designen
         dashboard.classList.add('move-left');
@@ -370,7 +372,9 @@ export function errorHandler(context = '', errorElement = null) {
             showError(dashboardErrorMsg);
             break;
         case 'unauthorizedDeletion':
-            document.getElementById('custom-popup').remove();
+            if (document.getElementById('custom-popup')) {
+                document.getElementById('custom-popup').remove();
+            }
             dashboardErrorMsg.textContent = "Only the creator can delete this board!";
             showError(dashboardErrorMsg);
             break;
